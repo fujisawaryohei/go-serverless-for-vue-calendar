@@ -20,7 +20,7 @@
 - GET /todo?date=2020-10-1 とかで
 - POST /todo request body { todo: string, date: timestamp }
 
-Client
+### Client
 Vue.js（https://github.com/fujisawaryohei/vue-calendar）
 - カレンダーの日付をクリックするとGETするようにする
 - 「追加する」をクリックするとPOSTするようにする
