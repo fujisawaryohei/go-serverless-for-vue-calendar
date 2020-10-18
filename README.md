@@ -5,6 +5,7 @@
 - [ ] Go SDKを使用してローカルでDynamoDBへPutItemする
 - [ ] Api-GatewayでAPIを作成
 - [ ] 作成したAPIとLambda関数の連携
+- [ ] Serverless Frameworkを使用して構成のコード化
 
 # 仕様
 ### DynamoDB
