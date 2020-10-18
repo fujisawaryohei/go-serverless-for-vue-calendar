@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources: 
+  myVueCalendarDB:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions: 
+        -  
+          AttributeName: "id"
+          AttributeType: "S"
+        - 
+          AttributeName: "timestamp"
+          AttributeType: "S"
+      # BillingMode: String
+      # ContributorInsightsSpecification: 
+        # ContributorInsightsSpecification
+      # GlobalSecondaryIndexes: 
+        # - GlobalSecondaryIndex
+      KeySchema: 
+        - 
+          AttributeName: "id"
+          KeyType: "HASH"
+        - 
+          AttributeName: "timestamp"
+          KeyType: "RANGE"
+      # LocalSecondaryIndexes: 
+        # - LocalSecondaryIndex
+      # PointInTimeRecoverySpecification: 
+        # PointInTimeRecoverySpecification
+      ProvisionedThroughput: 
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+      # SSESpecification: 
+        # SSESpecification
+      # StreamSpecification: 
+        # StreamSpecification
+      TableName: "my-vue-calendar-db"
+      # Tags: 
+        # - Tag
+      # TimeToLiveSpecification: 
+        # TimeToLiveSpecification
