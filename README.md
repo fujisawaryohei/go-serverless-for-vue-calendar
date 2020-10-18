@@ -9,7 +9,7 @@
 # 仕様
 ### DynamoDB
 - ID            パーティションキー       String
-- TimeStamp     レンジキー            String
+- TimeStamp     ソートキー            String
 - content                            String
 
 ### lambda
