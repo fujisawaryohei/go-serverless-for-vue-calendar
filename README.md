@@ -22,5 +22,5 @@
 
 Client
 Vue.js（https://github.com/fujisawaryohei/vue-calendar）
-・カレンダーの日付をクリックするとGETするようにする
-・「追加する」をクリックするとPOSTするようにする
+- カレンダーの日付をクリックするとGETするようにする
+- 「追加する」をクリックするとPOSTするようにする
