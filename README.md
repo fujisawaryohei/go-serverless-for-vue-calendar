@@ -1,8 +1,8 @@
 # go-serverless-for-vue-calendar
-- [x] Go SDKを使用してローカルでDynamoDBへアクセスしてデータをGETする
+- [x] Go SDKを使用してローカルでDynamoDBへアクセスしてデータをGetItemする
 - [ ] Api-GatewayでAPIを作成
 - [ ] 作成したAPIとLambda関数の連携
-- [ ] Go SDKを使用してローカルでDynamoDBへPUTする
+- [ ] Go SDKを使用してローカルでDynamoDBへPutItemする
 - [ ] Api-GatewayでAPIを作成
 - [ ] 作成したAPIとLambda関数の連携
 
