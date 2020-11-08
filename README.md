@@ -5,7 +5,7 @@
 - [x] Api-GatewayでAPIを作成
 - [x] 作成したAPIとLambda関数の連携
 - [x] Serverless Frameworkを使用して構成のコード化
-- [ ] Go SDKを使用してQueryStringを参照してDynamoDBへQueryする
+- [x] Go SDKを使用してQueryStringを参照してDynamoDBへQueryする
 - [ ] Go SDKを使用してRequestBodyを参照してDynamoDBへPutItemする
 
 # 仕様

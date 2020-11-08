@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"context"
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
@@ -24,9 +23,13 @@ func Handler(ctx context.Context, request Request) (Response, error) {
 	// https://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/#QueryInput
 	queryInput := &dynamodb.QueryInput{
 		TableName: aws.String("my-vue-calendar-db"),
+		// https://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/#QueryInput
+		ExpressionAttributeNames: map[string]*string{
+			"#timestamp": aws.String("timestamp"),
+		},
 		KeyConditionExpression: aws.String("#timestamp = :timestamp"),
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-			"timestamp": {
+			":timestamp": {
 				S: aws.String(request.QueryStringParameters["timestamp"]),
 			},
 		},
@@ -40,11 +43,11 @@ func Handler(ctx context.Context, request Request) (Response, error) {
 	jsonData, _ := json.Marshal(result.Items)
 
 	resp := Response{
-		StatusCode:       200,
+		StatusCode:      200,
 		IsBase64Encoded: false,
 		Body:            string(jsonData),
 		Headers: map[string]string{
-			"Content-type":           "application/json",
+			"Content-type":                "application/json",
 			"Access-Control-Allow-Origin": "*",
 		},
 	}
