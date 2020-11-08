@@ -37,9 +37,6 @@ func Handler(ctx context.Context, request Request) (Response, error) {
 		panic(getErr)
 	}
 
-	fmt.Println("-----------------------")
-	fmt.Println(result.Items)
-	fmt.Println("-----------------------")
 	jsonData, _ := json.Marshal(result.Items)
 
 	resp := Response{
