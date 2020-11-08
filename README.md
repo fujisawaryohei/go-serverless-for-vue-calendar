@@ -1,17 +1,17 @@
 # go-serverless-for-vue-calendar
 - [x] Go SDKを使用してローカルでDynamoDBへアクセスしてデータをGetItemする
-- [ ] Api-GatewayでAPIを作成
-- [ ] 作成したAPIとLambda関数の連携
-- [ ] Go SDKを使用してローカルでDynamoDBへPutItemする
-- [ ] Api-GatewayでAPIを作成
-- [ ] 作成したAPIとLambda関数の連携
-- [ ] Serverless Frameworkを使用して構成のコード化
+- [x] Api-GatewayでAPIを作成
+- [x] 作成したAPIとLambda関数の連携
+- [x] Api-GatewayでAPIを作成
+- [x] 作成したAPIとLambda関数の連携
+- [x] Serverless Frameworkを使用して構成のコード化
+- [ ] Go SDKを使用してQueryStringを参照してDynamoDBへQueryする
+- [ ] Go SDKを使用してRequestBodyを参照してDynamoDBへPutItemする
 
 # 仕様
 ### DynamoDB
-- ID            パーティションキー       String
-- TimeStamp     ソートキー            String
-- content                            String
+- TimeStamp      パーティションキー       String
+- content        ソートキー              String
 
 ### lambda
 - GETに対応したLambdaハンドラー（API GatewayからQuery String取得して→DynamoDBで検索かける）
