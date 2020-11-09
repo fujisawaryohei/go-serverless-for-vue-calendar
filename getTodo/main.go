@@ -38,7 +38,6 @@ func Handler(ctx context.Context, request Request) (Response, error) {
 	}
 
 	result, getErr := svc.Query(queryInput)
-
 	if getErr != nil {
 		panic(getErr)
 	}
@@ -47,7 +46,7 @@ func Handler(ctx context.Context, request Request) (Response, error) {
 	if err := dynamodbattribute.UnmarshalListOfMaps(result.Items, &body); err != nil {
 		panic(fmt.Sprintf("failed to unmarshal Dynamodb Scan Items, %v", err))
 	}
-	fmt.Println(body)
+
 	jsonData, _ := json.Marshal(body)
 
 	resp := Response{
