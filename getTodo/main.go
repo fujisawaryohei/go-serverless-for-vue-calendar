@@ -3,27 +3,29 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
 type Request events.APIGatewayProxyRequest
 type Response events.APIGatewayProxyResponse
+type Body struct {
+	Timestamp string `json:"timestamp" dynamodbav:"timestamp"`
+	Content   string `json:"content"  dynamodbav:"content"`
+}
 
-//https://godoc.org/github.com/aws/aws-lambda-go/events
 func Handler(ctx context.Context, request Request) (Response, error) {
 	mySession := session.Must(session.NewSession(&aws.Config{
 		Region: aws.String("ap-northeast-1")},
 	))
 	svc := dynamodb.New(mySession)
-	//TODO: ↓のリファレンスを参照にQueryを実装する
-	// https://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/#QueryInput
 	queryInput := &dynamodb.QueryInput{
 		TableName: aws.String("my-vue-calendar-db"),
-		// https://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/#QueryInput
 		ExpressionAttributeNames: map[string]*string{
 			"#timestamp": aws.String("timestamp"),
 		},
@@ -36,11 +38,18 @@ func Handler(ctx context.Context, request Request) (Response, error) {
 	}
 
 	result, getErr := svc.Query(queryInput)
+
 	if getErr != nil {
 		panic(getErr)
 	}
 
-	jsonData, _ := json.Marshal(result.Items)
+	fmt.Println(result.Items)
+	body := []Body{}
+	if err := dynamodbattribute.UnmarshalListOfMaps(result.Items, &body); err != nil {
+		panic(fmt.Sprintf("failed to unmarshal Dynamodb Scan Items, %v", err))
+	}
+	fmt.Println(body)
+	jsonData, _ := json.Marshal(body)
 
 	resp := Response{
 		StatusCode:      200,
