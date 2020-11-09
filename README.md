@@ -6,7 +6,12 @@
 - [x] 作成したAPIとLambda関数の連携
 - [x] Serverless Frameworkを使用して構成のコード化
 - [x] Go SDKを使用してQueryStringを参照してDynamoDBへQueryする
-- [ ] Go SDKを使用してRequestBodyを参照してDynamoDBへPutItemする
+- [x] Go SDKを使用してRequestBodyを参照してDynamoDBへPutItemする
+
+# Deployment
+```shell
+make deploy
+```
 
 # 仕様
 ### DynamoDB
