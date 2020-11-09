@@ -63,6 +63,13 @@ functions:
               #   foo: false
               # paths:
               #   bar: false
+  putTodo:
+    handler: bin/putTodo
+    events:
+      - http:
+          path: /todo
+          method: post
+          cors: false
 
 # you can add CloudFormation resource templates here
 resources:

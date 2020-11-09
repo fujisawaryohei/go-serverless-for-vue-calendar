@@ -16,7 +16,7 @@ type Request events.APIGatewayProxyRequest
 type Response events.APIGatewayProxyResponse
 type Body struct {
 	Timestamp string `json:"timestamp" dynamodbav:"timestamp"`
-	Content   string `json:"content"  dynamodbav:"content"`
+	Content   string `json:"content"   dynamodbav:"content"`
 }
 
 func Handler(ctx context.Context, request Request) (Response, error) {
