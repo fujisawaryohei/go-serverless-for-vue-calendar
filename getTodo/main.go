@@ -43,7 +43,6 @@ func Handler(ctx context.Context, request Request) (Response, error) {
 		panic(getErr)
 	}
 
-	fmt.Println(result.Items)
 	body := []Body{}
 	if err := dynamodbattribute.UnmarshalListOfMaps(result.Items, &body); err != nil {
 		panic(fmt.Sprintf("failed to unmarshal Dynamodb Scan Items, %v", err))
