@@ -51,7 +51,7 @@ functions:
       - http:
           path: /todo
           method: get
-          cors: false
+          cors: true
           # TODO: intergrationオプションについて調べる
           # ここをコメントアウトしたらリクエストボディのJSONがUnmarshalされるようになった
           # integration: lambda
@@ -69,7 +69,7 @@ functions:
       - http:
           path: /todo
           method: post
-          cors: false
+          cors: true
 
 # you can add CloudFormation resource templates here
 resources:

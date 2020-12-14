@@ -54,7 +54,6 @@ func Handler(ctx context.Context, request Request) (Response, error) {
 		IsBase64Encoded: false,
 		Body:            string(jsonData),
 		Headers: map[string]string{
-			"Content-type":                "application/json",
 			"Access-Control-Allow-Origin": "*",
 		},
 	}

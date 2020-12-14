@@ -14,11 +14,11 @@ type Request events.APIGatewayProxyRequest
 type Response events.APIGatewayProxyResponse
 
 type Item struct {
-  Timestamp string `json: timestamp`
-  Content   string `json: content`
+	Timestamp string `json: timestamp`
+	Content   string `json: content`
 }
 
-func Hanlder(ctx context.Context, request Request) (Response, error){
+func Hanlder(ctx context.Context, request Request) (Response, error) {
 	mySession := session.Must(session.NewSession(&aws.Config{
 		Region: aws.String("ap-northeast-1")},
 	))
@@ -33,11 +33,11 @@ func Hanlder(ctx context.Context, request Request) (Response, error){
 		TableName: aws.String("my-vue-calendar-db"),
 		Item: map[string]*dynamodb.AttributeValue{
 			"timestamp": {
-                S: aws.String(item.Timestamp),
-            },
-            "content": {
-                S: aws.String(item.Content),
-            },
+				S: aws.String(item.Timestamp),
+			},
+			"content": {
+				S: aws.String(item.Content),
+			},
 		},
 	}
 
@@ -51,13 +51,12 @@ func Hanlder(ctx context.Context, request Request) (Response, error){
 		IsBase64Encoded: false,
 		Body:            "success",
 		Headers: map[string]string{
-			"Content-type":                "application/json",
 			"Access-Control-Allow-Origin": "*",
 		},
 	}
 	return resp, nil
 }
 
-func main(){
+func main() {
 	lambda.Start(Hanlder)
 }
