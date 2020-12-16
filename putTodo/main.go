@@ -12,7 +12,6 @@ import (
 
 type Request events.APIGatewayProxyRequest
 type Response events.APIGatewayProxyResponse
-
 type Item struct {
 	Timestamp string `json: timestamp`
 	Content   string `json: content`
