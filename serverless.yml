@@ -38,13 +38,6 @@ package:
     - ./bin/**
 
 functions:
-  hello:
-    handler: bin/hello
-    events:
-      - http:
-          path: /hello
-          method: get
-          cors: false
   getTodo:
     handler: bin/getTodo
     events:
