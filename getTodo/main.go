@@ -8,19 +8,16 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"github.com/fujisawaryohei/go-serverless-for-vue-calendar/todo"
 )
 
 type Request events.APIGatewayProxyRequest
 type Response events.APIGatewayProxyResponse
 
 func Handler(ctx context.Context, request Request) (Response, error) {
-	mySession := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("ap-northeast-1")},
-	))
-	svc := dynamodb.New(mySession)
+	svc := todo.NewSession()
 	queryInput := &dynamodb.QueryInput{
 		TableName: aws.String("my-vue-calendar-db"),
 		ExpressionAttributeNames: map[string]*string{
@@ -39,7 +36,7 @@ func Handler(ctx context.Context, request Request) (Response, error) {
 		panic(getErr)
 	}
 
-	body := []Body{}
+	body := []todo.Item{}
 	if err := dynamodbattribute.UnmarshalListOfMaps(result.Items, &body); err != nil {
 		panic(fmt.Sprintf("failed to unmarshal Dynamodb Scan Items, %v", err))
 	}

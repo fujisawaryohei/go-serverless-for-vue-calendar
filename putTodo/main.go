@@ -7,24 +7,16 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/fujisawaryohei/go-serverless-for-vue-calendar/todo"
 )
 
 type Request events.APIGatewayProxyRequest
 type Response events.APIGatewayProxyResponse
-type Item struct {
-	Timestamp string `json: timestamp`
-	Content   string `json: content`
-}
 
 func Hanlder(ctx context.Context, request Request) (Response, error) {
-	mySession := session.Must(session.NewSession(&aws.Config{
-		Region: aws.String("ap-northeast-1")},
-	))
-	svc := dynamodb.New(mySession)
-
-	item := Item{}
+	svc := todo.NewSession()
+	item := todo.Item{}
 	if err := json.Unmarshal([]uint8(request.Body), &item); err != nil {
 		panic(err)
 	}

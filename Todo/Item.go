@@ -1,4 +1,4 @@
-package Todo
+package todo
 
 type Item struct {
 	Timestamp string `json:"timestamp" dynamodbav:"timestamp"`
